@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/menuAbout"
+        android:name="com.ethiop.drivinglicencevalidation.fragments.About"
+        android:label="about"
+        tools:layout="@layout/about" />
+    <fragment
+        android:id="@+id/menuHistory"
+        android:name="com.ethiop.drivinglicencevalidation.fragments.Histories"
+        android:label="histories"
+        tools:layout="@layout/histories" />
+    <fragment
+        android:id="@+id/menuStings"
+        android:name="com.ethiop.drivinglicencevalidation.fragments.Setings"
+        android:label="Stings"
+        tools:layout="@layout/setings" />
+    <fragment
+        android:id="@+id/menuNotifications"
+        android:name="com.ethiop.drivinglicencevalidation.fragments.Notifications"
+        android:label="notifications"
+        tools:layout="@layout/notifications" />
+    <fragment
+        android:id="@+id/home"
+        android:name="com.ethiop.drivinglicencevalidation.fragments.Home"
+        android:label="home"
+        tools:layout="@layout/home" />
+    <fragment
+        android:id="@+id/menuPenalty"
+        android:name="com.ethiop.drivinglicencevalidation.fragments.Penality"
+        android:label="penality"
+        tools:layout="@layout/penality" />
+    <fragment
+        android:id="@+id/menuProfile"
+        android:name="com.ethiop.drivinglicencevalidation.fragments.Profile"
+        android:label="profile"
+        tools:layout="@layout/profile" />
+    <fragment
+        android:id="@+id/menuValidation"
+        android:name="com.ethiop.drivinglicencevalidation.fragments.Validation"
+        android:label="validation"
+        tools:layout="@layout/validation" />
+</navigation>

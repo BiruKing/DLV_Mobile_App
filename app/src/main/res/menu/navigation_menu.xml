@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuProfile"
+        android:icon="@drawable/ic_baseline_adb_24"
+        android:title="Profile"/>
+
+    <item
+        android:id="@+id/menuValidation"
+        android:icon="@drawable/ic_baseline_adb_24"
+        android:title="Validation"/>
+    <item
+        android:id="@+id/menuPenalty"
+        android:icon="@drawable/ic_baseline_adb_24"
+        android:title="Penalty"/>
+    <item
+        android:id="@+id/menuHistory"
+        android:icon="@drawable/ic_baseline_adb_24"
+        android:title="History"/>
+    <item
+        android:id="@+id/menuNotifications"
+        android:icon="@drawable/ic_baseline_adb_24"
+        android:title="Notifications"/>
+    <item
+        android:id="@+id/menuStings"
+        android:icon="@drawable/ic_baseline_adb_24"
+        android:title="Stings"/>
+    <item
+        android:id="@+id/menuLogout"
+        android:icon="@drawable/ic_baseline_adb_24"
+        android:title="Logout"/>
+    <item
+        android:id="@+id/menuOther"
+        android:icon="@drawable/ic_baseline_adb_24"
+        android:title="other">
+        <menu>
+            <item
+                android:id="@+id/menuAbout"
+                android:icon="@drawable/ic_baseline_adb_24"
+                android:title="About us"/>
+            <item
+                android:id="@+id/menuContact"
+                android:icon="@drawable/ic_baseline_adb_24"
+                android:title="Logout"/>
+            <item
+                android:id="@+id/menuHelp"
+                android:icon="@drawable/ic_baseline_adb_24"
+                android:title="Help"/>
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,2 @@
+rootProject.name = "Driving Licence Validation"
+include ':app'
