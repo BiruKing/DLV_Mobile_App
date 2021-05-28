@@ -5,4 +5,11 @@
     <string name="wellcome">Wellcome To Driving Licence Validation</string>
     <string name="start">Get Started</string>
     <string name="home">Home</string>
+    <string name="text">In Ethiopia there is a high percentage of mortality incase of car accident.</string>
+    <string name="text1">Ethiopian Driving Licence Validation System</string>
+    <string name="text2">Validate Driving Licences</string>
+    <string name="text3">Accident Report</string>
+    <string name="text4">Penalize Faulty Drivers</string>
+    <string name="text5">To reduce traffic accident mortality the community,drivers and traffic polices have responsibility</string>
+    <string name="text7">So as a traffic police do what you have to do.</string>
 </resources>
