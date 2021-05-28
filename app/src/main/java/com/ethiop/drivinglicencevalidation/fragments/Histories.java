@@ -64,3 +64,6 @@ public class Histories extends Fragment {
         return inflater.inflate(R.layout.histories, container, false);
     }
 }
+
+
+//todo: Aciden report and penality report history

@@ -49,6 +49,7 @@
                 android:id="@+id/penality"
                 android:layout_width="124dp"
                 android:layout_height="46dp"
+                android:onClick="goToPenality"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/roundedbutton"
                 android:text="Penality"
@@ -99,7 +100,25 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
-                    android:text="Etaga taytu" />
+                    android:text="Abebe Kebede Alemu" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Licence number"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/liceneNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="DBL10238378" />
 
                 <TextView
                     android:id="@+id/textView15"
@@ -125,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:text="Expired date"
+                    android:text="Date"
                     android:textSize="20sp" />
 
                 <TextView
@@ -156,30 +175,71 @@
                     android:text="2-7-2010" />
 
                 <TextView
-                    android:id="@+id/textView17"
+                    android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:text="Licence number"
+                    android:text="City"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/liceneNo"
+                    android:id="@+id/textView7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
-                    android:text="DBL10238378" />
+                    android:text="Bahir Dar" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Driving School"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Smart \drive" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Nationality"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Ethiopian" />
 
                 <Button
                     android:id="@+id/PenalityRecords"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAllCaps="false"
+                    android:layout_marginStart="10dp"
+                    android:onClick="goToPenalityHistory"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@drawable/roundedbutton"
                     android:text="Penality History"
+                    android:textAllCaps="false"
                     app:backgroundTint="#2196F3" />
 
             </LinearLayout>

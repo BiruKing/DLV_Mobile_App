@@ -1,5 +1,6 @@
 package com.ethiop.drivinglicencevalidation.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ethiop.drivinglicencevalidation.R;
+import com.ethiop.drivinglicencevalidation.activities.ChangePassword;
+import com.ethiop.drivinglicencevalidation.activities.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,5 +65,11 @@ public class Profile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.profile, container, false);
+    }
+
+    public void changePassword(View view) {
+        Intent intent = new Intent(getActivity(), ChangePassword.class);
+        startActivity(intent);
+
     }
 }

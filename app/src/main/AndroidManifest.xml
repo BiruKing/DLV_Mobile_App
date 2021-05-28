@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DrivingLicenceValidation">
+        <activity android:name=".activities.DriverPenalityHistory"></activity>
+        <activity android:name=".activities.ChangePassword" />
         <activity android:name=".activities.GetStart">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +21,7 @@
         <activity android:name=".activities.HistoryProfile" />
         <activity android:name=".activities.Login" />
         <activity android:name=".activities.Status" />
-        <activity android:name=".Navigation"/>
-
+        <activity android:name=".Navigation" />
     </application>
 
 </manifest>
