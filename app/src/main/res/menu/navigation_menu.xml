@@ -14,6 +14,10 @@
         android:icon="@drawable/ic_baseline_adb_24"
         android:title="Penalty"/>
     <item
+        android:id="@+id/menuReport"
+        android:icon="@drawable/ic_baseline_adb_24"
+        android:title="Acident Report"/>
+    <item
         android:id="@+id/menuHistory"
         android:icon="@drawable/ic_baseline_adb_24"
         android:title="History"/>
@@ -38,10 +42,10 @@
                 android:id="@+id/menuAbout"
                 android:icon="@drawable/ic_baseline_adb_24"
                 android:title="About us"/>
-            <item
+            <!--<item
                 android:id="@+id/menuContact"
                 android:icon="@drawable/ic_baseline_adb_24"
-                android:title="Logout"/>
+                android:title="Logout"/>-->
             <item
                 android:id="@+id/menuHelp"
                 android:icon="@drawable/ic_baseline_adb_24"

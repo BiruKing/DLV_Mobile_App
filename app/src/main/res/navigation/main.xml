@@ -45,4 +45,14 @@
         android:name="com.ethiop.drivinglicencevalidation.fragments.Validation"
         android:label="validation"
         tools:layout="@layout/validation" />
+    <fragment
+        android:id="@+id/menuReport"
+        android:name="com.ethiop.drivinglicencevalidation.fragments.AcidentReport"
+        android:label="Acident Report"
+        tools:layout="@layout/acident_report" />
+    <fragment
+        android:id="@+id/menuHelp"
+        android:name="com.ethiop.drivinglicencevalidation.fragments.Help"
+        android:label="Help"
+        tools:layout="@layout/help" />
 </navigation>
