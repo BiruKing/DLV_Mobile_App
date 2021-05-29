@@ -8,12 +8,12 @@
     <fragment
         android:id="@+id/menuAbout"
         android:name="com.ethiop.drivinglicencevalidation.fragments.About"
-        android:label="about"
+        android:label="About"
         tools:layout="@layout/about" />
     <fragment
         android:id="@+id/menuHistory"
         android:name="com.ethiop.drivinglicencevalidation.fragments.Histories"
-        android:label="histories"
+        android:label="Histories"
         tools:layout="@layout/histories" />
     <fragment
         android:id="@+id/menuStings"
@@ -23,32 +23,32 @@
     <fragment
         android:id="@+id/menuNotifications"
         android:name="com.ethiop.drivinglicencevalidation.fragments.Notifications"
-        android:label="notifications"
+        android:label="Notifications"
         tools:layout="@layout/notifications" />
     <fragment
         android:id="@+id/home"
         android:name="com.ethiop.drivinglicencevalidation.fragments.Home"
-        android:label="home"
+        android:label="Home"
         tools:layout="@layout/home" />
     <fragment
         android:id="@+id/menuPenalty"
         android:name="com.ethiop.drivinglicencevalidation.fragments.Penality"
-        android:label="penality"
+        android:label="Penalty"
         tools:layout="@layout/penality" />
     <fragment
         android:id="@+id/menuProfile"
         android:name="com.ethiop.drivinglicencevalidation.fragments.Profile"
-        android:label="profile"
+        android:label="Profile"
         tools:layout="@layout/profile" />
     <fragment
         android:id="@+id/menuValidation"
         android:name="com.ethiop.drivinglicencevalidation.fragments.Validation"
-        android:label="validation"
+        android:label="Validation"
         tools:layout="@layout/validation" />
     <fragment
         android:id="@+id/menuReport"
         android:name="com.ethiop.drivinglicencevalidation.fragments.AcidentReport"
-        android:label="Acident Report"
+        android:label="Accident Report"
         tools:layout="@layout/acident_report" />
     <fragment
         android:id="@+id/menuHelp"

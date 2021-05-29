@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:text="Kind Biruk"
+        android:text="Etaga Menen"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
