@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.ethiop.drivinglicencevalidation.R;
@@ -18,8 +19,11 @@ public class GetStart extends AppCompatActivity {
     }
 
     public void onClickHandler(View view) {
+        Log.i("info","I am here");
+
 
         Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
 
     }
 }

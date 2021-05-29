@@ -19,8 +19,8 @@ public class Login extends AppCompatActivity {
 
     public void Authenticate(View view) {
         Intent intent = new Intent(this, Navigation.class);
-
-    }
+        startActivity(intent);
+            }
 
     public void gotoFretPassword(View view) {
     }
