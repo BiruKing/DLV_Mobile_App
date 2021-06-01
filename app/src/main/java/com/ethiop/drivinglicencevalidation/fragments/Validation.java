@@ -1,21 +1,38 @@
 package com.ethiop.drivinglicencevalidation.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.ethiop.drivinglicencevalidation.Navigation;
 import com.ethiop.drivinglicencevalidation.R;
+import com.ethiop.drivinglicencevalidation.activities.Status;
+import com.google.android.material.tabs.TabLayout;
+
+import me.dm7.barcodescanner.zbar.Result;
+import me.dm7.barcodescanner.zbar.ZBarScannerView;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Validation#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Validation extends Fragment {
+public class Validation extends Fragment implements ZBarScannerView.ResultHandler {
+
+    //TextView textView = (TextView) findViewById(R.id.tvresult);
+
+    private ZBarScannerView mScannerView;
+    //camera permission is needed.
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,6 +71,10 @@ public class Validation extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
+            //mScannerView = new ZBarScannerView(this);    // Programmatically initialize the scanner view
+           // setContentView(mScannerView);                // Set the scanner view as the content view
         }
     }
 
@@ -61,6 +82,40 @@ public class Validation extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.validation, container, false);
+
+        mScannerView = new ZBarScannerView(getActivity());
+        return mScannerView;
+
+        //return inflater.inflate(R.layout.validation, false);
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mScannerView.setResultHandler(this);
+        mScannerView.startCamera();
+    }
+
+    @Override
+    public void handleResult(Result rawResult) {
+        Toast.makeText(getActivity(), "Contents = " + rawResult.getContents() +
+                ", Format = " + rawResult.getBarcodeFormat().getName(), Toast.LENGTH_SHORT).show();
+        // Send scan result to activity
+        goToAttract(rawResult.getContents());
+        mScannerView.startCamera();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mScannerView.stopCamera();
+    }
+    public void goToAttract(String licenceNumber)
+    {
+        Intent intent = new Intent(getActivity(), Status.class);
+        intent.putExtra("licenceNumber",licenceNumber);
+        startActivity(intent);
     }
 }

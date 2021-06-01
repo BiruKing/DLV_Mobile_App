@@ -39,7 +39,7 @@
             android:drawableLeft="@drawable/ic_baseline_menu_24" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/lPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -48,7 +48,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/lPassword"
+            android:id="@+id/Password"
             android:drawablePadding="12dp"
 
             android:drawableStart="@drawable/ic_baseline_menu_24"
@@ -70,7 +70,6 @@
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
-            android:onClick="gotoFretPassword"
             android:gravity="right"
             android:text="Forget Password?"
             android:textColor="#BC1515"

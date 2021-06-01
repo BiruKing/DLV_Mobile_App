@@ -13,8 +13,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+
+import static android.content.ContentValues.TAG;
 
 
 public class Navigation extends AppCompatActivity {
@@ -52,6 +55,18 @@ public class Navigation extends AppCompatActivity {
             }
         });
 
+
+
+        ///------
+        /*Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            Bundle data = extras.getBundle("data");
+            Log.e(TAG, data.getString("First_Name"));
+            Toast.makeText(this, "Contents = "+data.getString("First_Name"), Toast.LENGTH_SHORT).show();
+
+
+        }*/
 
     }
 }

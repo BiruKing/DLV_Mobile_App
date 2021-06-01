@@ -1,28 +1,46 @@
 package com.ethiop.drivinglicencevalidation.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.ethiop.drivinglicencevalidation.Navigation;
 import com.ethiop.drivinglicencevalidation.R;
+import com.ethiop.drivinglicencevalidation.fragments.Home;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.ContentValues.TAG;
+
 public class Login extends AppCompatActivity {
+
+
+    boolean next = false;  // next page
+    // Intent intent = new Intent(this, Navigation.class);
+
 
     EditText userName, password;
 
@@ -32,68 +50,118 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        findViewById(R.id.lUserName);
-        findViewById(R.id.lPassword);
+        userName = (EditText) findViewById(R.id.UserName); //---
+        password =  findViewById(R.id.Password);
+
+        //initialize intent
+
 
     }
-
-    final String url = "http://10.18.197.67:300/login";
-    JSONArray jsonArray = new JSONArray();
-
-    RequestQueue requestQueue;
 
     public void Authenticate(View view) {
 
         //TODO: Response 404 200 500 if else
 
-
-        Map<String, String> postParam = new HashMap<String, String>();
-        postParam.put("username", userName.getText().toString());
-        postParam.put("password", password.getText().toString());
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, (JSONArray) postParam, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
+        jsonParse();
 
 
+        /*Intent intent=new Intent(this,Navigation.class);
 
-                System.out.println(response);
-
-
-
-                JSONArray jsonArray = response;
-                try {
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String albumname = jsonObject.getString("title");
-                        String albumimageurl = jsonObject.getString("image");
-                        // alist.add(new Albums(albumname,albumimageurl));
-                        System.out.println("Hi King It's me Java");
-                    }
-                    //  adapter.notifyDataSetChanged();//To prevent app from crashing when updating
-                    //UI through background Thread
-                } catch (Exception w) {
-                    Toast.makeText(Login.this, w.getMessage(), Toast.LENGTH_LONG).show();
-                    System.out.println(w.getMessage());
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Login.this, error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-        requestQueue.add(jsonArrayRequest);
-
-        Intent intent = new Intent(this, Navigation.class);
-
-
-
-        startActivity(intent);
-
+        startActivity(intent);*/
     }
 
-    public void gotoFretPassword(View view) {
+    private void jsonParse() {
+
+
+        Log.e(TAG, userName.getText().toString());
+        Log.e(TAG, password.getText().toString());
+
+
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("username", userName.getText().toString());
+        params.put("password", password.getText().toString());
+
+
+        Log.e(TAG, (String) params.get("username"));
+        Log.e(TAG, (String) params.get("password"));
+
+        //---------
+
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.start();
+        String url = "http://10.18.197.116:300/login";
+
+        Log.e(TAG, url);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+
+                            if (response.length()<=0) {
+
+                                Log.e(TAG, response.getString("msg"));
+
+
+                            } else {
+
+
+                                Log.e(TAG, String.valueOf(response));
+                                //Log.e(TAG, response.getString("First_Name"));
+
+                                /*
+                                Bundle bundle = new Bundle();
+                                bundle.putString("First_Name", response.getString("First_Name"));
+
+
+                                // set Home Arguments
+                                Home home = new Home();
+                                home.setArguments(bundle);
+
+                                //Call Fragment
+
+                                Fragment fragment = new Home();
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.home, fragment, fragment.getClass().getSimpleName())
+                                        .addToBackStack(null)
+                                        .commit();
+*/
+                                /*Bundle bundle = new Bundle();
+                                bundle.putString("First_Name", response.getString("First_Name"));
+                                setNext(bundle);*/
+                                ///setNext();
+                                next = true; //next page
+
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.e(TAG, error.toString());
+
+            }
+        });
+
+        queue.add(request);
+
+        if (next) {
+            Log.e(TAG, "Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"+next);
+
+            Intent intent = new Intent(this, Navigation.class);
+            startActivity(intent);
+        }
+
+
     }
 
 }
