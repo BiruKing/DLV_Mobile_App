@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.ethiop.drivinglicencevalidation.Navigation;
 import com.ethiop.drivinglicencevalidation.R;
 
 import static android.content.ContentValues.TAG;
@@ -61,24 +62,38 @@ public class Home extends Fragment {
         }*/
 
 
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+try {
+    /*Bundle datas = this.getArguments();
+    Log.e(TAG, String.valueOf(datas));
 
-        Log.e(TAG, getArguments().toString());
 
-        if (getArguments() != null) {
+    if (datas != null) {
 
-            String userName;
+        String userName;
 
-            userName = getArguments().getString("First_Name");
-            Log.e(TAG, userName);
-        }
-        else{
-            Log.e(TAG, "Bundle not get");
-        }
+        userName = getArguments().getString("First_Name");
+        Log.e(TAG, userName+"  Hailu ");
+    }
+    else{
+        Log.e(TAG, "Bundle not get");
+    }*/
+
+    Navigation navigation = (Navigation)getActivity();
+
+    Bundle results = navigation.getBundleData().getBundle("data");
+
+    Log.e(TAG, "Home "+results.getString("First_Name"));
+
+}catch (Exception e){
+    Log.e(TAG, e.toString());
+
+}
 
 
         // Inflate the layout for this fragment

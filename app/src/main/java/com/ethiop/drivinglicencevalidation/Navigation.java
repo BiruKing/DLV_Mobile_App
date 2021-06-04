@@ -9,9 +9,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.ui.NavigationUI;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +24,10 @@ import static android.content.ContentValues.TAG;
 
 
 public class Navigation extends AppCompatActivity {
+
+    //For storing traffic profile
+
+    private Bundle data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,17 +63,60 @@ public class Navigation extends AppCompatActivity {
         });
 
 
-
         ///------
-        /*Bundle extras = getIntent().getExtras();
+        Bundle extras = getIntent().getExtras().getBundle("data");
 
         if (extras != null) {
-            Bundle data = extras.getBundle("data");
-            Log.e(TAG, data.getString("First_Name"));
-            Toast.makeText(this, "Contents = "+data.getString("First_Name"), Toast.LENGTH_SHORT).show();
 
 
-        }*/
+            try {
+
+                //data.getString("First_Name",extras.getString("First_Name"));
+
+                Log.e(TAG, extras.getString("Name"));
+
+
+                //Bundle dataGet = new Bundle();
+                //dataGet.putString("First_Name", extras.getString("First_Name"));
+
+                //Set data
+                //todo: photo
+                setBundleData(getIntent().getExtras().getBundle("data"));
+
+
+                //Log.e(TAG, data.getString("First_Name"));
+                Log.e(TAG, extras.getString("Name"));
+
+                Toast.makeText(this, "Contents = " + extras.getString("Name"), Toast.LENGTH_SHORT).show();
+
+
+                //Initialize navigation header
+
+
+                Fragment frag = getFragmentManager().findFragmentById(R.id.navigationHeader);
+                // name
+                ((TextView) frag.getView().findViewById(R.id.profileName)).setText(extras.getString("Name"));
+                //todo: photo
+
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+
+            }
+        } else {
+            Toast.makeText(this, "Nooo", Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+
+    public Bundle getBundleData() {
+
+        return data;
+    }
+
+    public void setBundleData(Bundle bundleData) {
+
+        data = bundleData;
 
     }
 }

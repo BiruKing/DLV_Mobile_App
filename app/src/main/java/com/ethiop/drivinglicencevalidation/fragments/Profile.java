@@ -5,13 +5,19 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import com.ethiop.drivinglicencevalidation.Navigation;
 import com.ethiop.drivinglicencevalidation.R;
 import com.ethiop.drivinglicencevalidation.activities.ChangePassword;
 import com.ethiop.drivinglicencevalidation.activities.*;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +25,12 @@ import com.ethiop.drivinglicencevalidation.activities.*;
  * create an instance of this fragment.
  */
 public class Profile extends Fragment {
+
+//Set text
+    //Photo--
+
+    TextView trafficName, Phone_Num, User_Name, Traffic_Police_Id, City;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,8 +75,41 @@ public class Profile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+//find vie by id
+        View view = inflater.inflate(R.layout.profile, container, false);
+
+        trafficName = (TextView) view.findViewById(R.id.TrafficName);
+        Phone_Num = (TextView) view.findViewById(R.id.phoneNum);
+        User_Name = (TextView) view.findViewById(R.id.trafficUserName);
+        Traffic_Police_Id = (TextView) view.findViewById(R.id.trafficPoliceId);
+        City = (TextView) view.findViewById(R.id.city);
+
+        try {
+
+            Navigation navigation = (Navigation) getActivity();
+
+            Bundle results = navigation.getBundleData();
+
+            Log.e(TAG, "Profile " + results.getString("Name"));
+
+
+            //Stet profile
+//todo: photo
+            trafficName.setText(results.getString("Name"));
+            Phone_Num.setText(results.getString("Phone_Num"));
+            User_Name.setText(results.getString("User_Name"));
+            Traffic_Police_Id.setText(results.getString("Traffic_Police_Id"));
+            City.setText(results.getString("City"));
+
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+
+        }
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.profile, container, false);
+        return view;
     }
 
     public void changePassword(View view) {

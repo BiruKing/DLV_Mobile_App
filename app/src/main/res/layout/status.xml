@@ -184,7 +184,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/Dcity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -202,7 +202,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/schoolName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -211,7 +211,7 @@
                     android:text="Smart \drive" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/Dnationality"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -220,7 +220,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/nationality"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"

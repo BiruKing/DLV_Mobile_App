@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,14 +45,13 @@ public class Login extends AppCompatActivity {
 
     EditText userName, password;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
         userName = (EditText) findViewById(R.id.UserName); //---
-        password =  findViewById(R.id.Password);
+        password = (EditText) findViewById(R.id.Password);
 
         //initialize intent
 
@@ -64,13 +64,25 @@ public class Login extends AppCompatActivity {
 
         jsonParse();
 
+/*try {
 
-        /*Intent intent=new Intent(this,Navigation.class);
+    Intent intent=new Intent(this,Navigation.class);
 
-        startActivity(intent);*/
+    startActivity(intent);
+}catch (Exception e){
+    Log.e(TAG, e.toString());
+
+}*/
     }
 
     private void jsonParse() {
+
+        Intent intent = new Intent(this, Navigation.class);
+
+
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
 
 
         Log.e(TAG, userName.getText().toString());
@@ -100,41 +112,41 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
 
+                        progressDialog.dismiss();
+
                         try {
 
-                            if (response.length()<=0) {
+                            if (response.length() <= 0) {
 
                                 Log.e(TAG, response.getString("msg"));
 
 
                             } else {
 
+                   try {
+                       Log.e(TAG, String.valueOf(response));
+                       //Log.e(TAG, response.getString("First_Name"));
 
-                                Log.e(TAG, String.valueOf(response));
-                                //Log.e(TAG, response.getString("First_Name"));
+                       Bundle bundle = new Bundle();
 
-                                /*
-                                Bundle bundle = new Bundle();
-                                bundle.putString("First_Name", response.getString("First_Name"));
+                       String name = response.getString("First_Name")+"  "+response.getString("Middle_Name")+" "+response.getString("Last_Name");
+
+                       bundle.putString("Name", name);
+                       bundle.putString("Phone_Num", response.getString("Phone_Num"));
+                       bundle.putString("User_Name", response.getString("User_Name"));
+                       bundle.putString("Traffic_Police_Id", response.getString("Traffic_Police_Id"));
+                       bundle.putString("City", response.getString("City"));
 
 
-                                // set Home Arguments
-                                Home home = new Home();
-                                home.setArguments(bundle);
+                       //Send Activity
+                       intent.putExtra("data",bundle);
+                       startActivity(intent);
 
-                                //Call Fragment
+                       //  next = true; //next page
+                   }catch (Exception e){
+                       Log.e(TAG, e.toString());
 
-                                Fragment fragment = new Home();
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.home, fragment, fragment.getClass().getSimpleName())
-                                        .addToBackStack(null)
-                                        .commit();
-*/
-                                /*Bundle bundle = new Bundle();
-                                bundle.putString("First_Name", response.getString("First_Name"));
-                                setNext(bundle);*/
-                                ///setNext();
-                                next = true; //next page
+                   }
 
                             }
 
@@ -148,18 +160,25 @@ public class Login extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 Log.e(TAG, error.toString());
-
+                progressDialog.dismiss();
             }
+
         });
 
+        /*if (next) {
+            Log.e(TAG, "Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii" + next);
+
+            try {
+                Intent intent = new Intent(this, Navigation.class);
+                startActivity(intent);
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+
+
+            }
+        }*/
+
         queue.add(request);
-
-        if (next) {
-            Log.e(TAG, "Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"+next);
-
-            Intent intent = new Intent(this, Navigation.class);
-            startActivity(intent);
-        }
 
 
     }

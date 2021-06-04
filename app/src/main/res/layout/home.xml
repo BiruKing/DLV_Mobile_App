@@ -118,10 +118,10 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_width="271dp"
+        android:layout_height="192dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
         android:layout_marginBottom="15dp"
         android:src="@drawable/traffic_police"
         app:layout_constraintBottom_toBottomOf="parent"

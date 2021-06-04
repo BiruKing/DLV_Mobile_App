@@ -34,13 +34,13 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.446"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintHorizontal_bias="0.057"
+            app:layout_constraintStart_toEndOf="@+id/imageProfile"
+            app:layout_constraintTop_toBottomOf="@+id/TrafficName"
             app:layout_constraintVertical_bias="0.142" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/TrafficName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Abebe Alemu"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:text="Phone Number"
+        android:text="Phone number"
         android:textSize="20sp" />
 
     <TextView
@@ -79,11 +79,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:text="User Name"
+        android:text="User name"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/expDate"
+        android:id="@+id/trafficUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -96,35 +96,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:text="Traffic Police Id"
+        android:text="Traffic police ID"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/traffic_Police_Id"
+        android:id="@+id/trafficPoliceId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="15dp"
         android:text="TRAF/22344" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="Licence number"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/liceneNo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="15dp"
-        android:text="DBL10238378" />
 
     <TextView
         android:id="@+id/textView14"
@@ -145,13 +127,15 @@
         android:text="Bahir Dar" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/edit"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/roundedbutton"
-        android:text="Change Password"
+        android:gravity="center"
+        android:text="Edit"
         android:textAllCaps="false"
         android:textSize="14sp" />
 
