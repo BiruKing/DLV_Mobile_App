@@ -1,9 +1,11 @@
 package com.ethiop.drivinglicencevalidation.fragments;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -101,8 +104,8 @@ public class Validation extends Fragment implements ZBarScannerView.ResultHandle
     @Override
     public void onResume() {
         super.onResume();
-        mScannerView.setResultHandler(this);
-        mScannerView.startCamera();
+        mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
+        mScannerView.startCamera();          // Start camera on resume
     }
 
     @Override
@@ -119,9 +122,7 @@ public class Validation extends Fragment implements ZBarScannerView.ResultHandle
     @Override
     public void onPause() {
         super.onPause();
-        mScannerView.stopCamera();
-         // mScannerView.startCamera();
-
+        mScannerView.stopCamera();           // Stop camera on pause
     }
 
 
@@ -162,16 +163,46 @@ public class Validation extends Fragment implements ZBarScannerView.ResultHandle
 
                         try {
 
-                            if (response.length() <= 0) {
+                            boolean checker=false;
+
+                            try {
+
+                                if (response.getString("response").equalsIgnoreCase("Not Found")) {
 
 
-                                onResume();
-                               // Log.e(TAG, response.getString("msg"));
-                                 Log.e(TAG, "Driver NOt found");
+                                    onResume();
+                                    // Log.e(TAG, response.getString("msg"));
+                                    Log.e(TAG, "Driver NOt found");
 
-                            } else {
+                                    //Dialog box
+
+                                    AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+                                    alertDialog.setTitle("Warning!");
+                                    alertDialog.setMessage("Driver NOt found");
+                                    // Alert dialog button
+                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    // Alert dialog action goes here
+                                                    // onClick button code here
+                                                    dialog.dismiss();// use dismiss to cancel alert dialog
+
+                                                    //Resume Camera
+                                                    onResume();
+                                                }
+                                            });
+                                    alertDialog.show();
+
+                                }
+
+                            }catch (Exception e){
+                                checker=true;
+                            }
+
+                             if (checker){
 
                                 try {
+
                                     Log.e(TAG, String.valueOf(response));
                                     //Log.e(TAG, response.getString("First_Name"));
 
@@ -230,8 +261,21 @@ public class Validation extends Fragment implements ZBarScannerView.ResultHandle
             }
         }*/
 
+        //Request Timeout
+
+        int TIMEOUT_MS=10000;        //10 seconds
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        //Start request queue
+
+
         queue.add(request);
 
     }
+
 
 }

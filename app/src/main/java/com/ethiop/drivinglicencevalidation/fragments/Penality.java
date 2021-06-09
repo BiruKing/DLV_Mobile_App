@@ -1,16 +1,20 @@
 package com.ethiop.drivinglicencevalidation.fragments;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -74,6 +78,7 @@ public class Penality extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
 
         }
+
     }
 
     @Override
@@ -96,12 +101,28 @@ public class Penality extends Fragment {
         Driver_Name = (TextView) view.findViewById(R.id.driverName);
         Report = (TextView) view.findViewById(R.id.penalityReport);
 
+
+        // Click handler
+
+        final Button button = (Button) view.findViewById(R.id.makePenaltyBtn);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                try {
+                    makePenalty();
+                }catch (Exception e){
+                    Log.e(TAG, e.toString());
+
+                }
+            }
+        });
+
         // Inflate the layout for this fragment
+
         return view;
 
     }
 
-    public void makeReport(View view) {
+    public void makePenalty() {
 
         ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Please wait...");
@@ -110,33 +131,39 @@ public class Penality extends Fragment {
 // Json Object
 
         HashMap<String, Object> params = new HashMap<>();
-        params.put("P_Type", penaltyType);
-        params.put("Datee", date);
-        params.put("Timee", time);
-        params.put("City", City);
-        params.put("Road_name", Road_name);
-        params.put("Ticket_Num", Ticket_Num);
-        params.put("Licence_num", Licence_num);
-        params.put("Cause", Cause);
-        params.put("Trafic_Name", Trafic_Name);
-        params.put("P_Balance", P_Balance);
-        params.put("Report", Report);
+        params.put("P_Type", penaltyType.getText().toString());
+        params.put("datee", date.getText().toString());
+        params.put("timee", time.getText().toString());
+        params.put("city", City.getText().toString());
+        params.put("Road_name", Road_name.getText().toString());
+        params.put("Ticket_Num", Ticket_Num.getText().toString());
+        params.put("Licence_num", Licence_num.getText().toString());
+        params.put("Cause", Cause.getText().toString());
+        params.put("Traffic_Name", Trafic_Name.getText().toString());
+        params.put("P_Balance", P_Balance.getText().toString());
+        params.put("Report", Report.getText().toString());
 
-        String name[]=Driver_Name.toString().split(" ");
+        String name[]=Driver_Name.getText().toString().split(" ");
 
+        //
+        Log.e(TAG, Driver_Name.getText().toString());
+
+        Log.e(TAG, ""+name.length);
+
+        Log.e(TAG, name[0]+" "+name[1]+" "+name[2]);
+
+        //
         params.put("DF_Name", name[0]);
         params.put("DM_Name", name[1]);
         params.put("DL_Name", name[2]);
 
 
-
-
-        Log.e(TAG, (String) params.get("licenseNumber"));
+       // Log.e(TAG, (String) params.get("licenseNumber"));
 
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         queue.start();
-        String url = "http://10.18.197.116:300/validate";
+        String url = "http://10.18.197.116:300/penalty";
 
         Log.e(TAG, url);
 
@@ -151,9 +178,24 @@ public class Penality extends Fragment {
                         try {
 
                             if (response.getString("response").equalsIgnoreCase("Error")) {
-                                //response.length() <= 0
 
                                 Log.e(TAG, "Penality error");
+
+                                //Dialog box
+
+                                AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+                                alertDialog.setTitle("Warning!");
+                                alertDialog.setMessage("Try again");
+                                // Alert dialog button
+                                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // Alert dialog action goes here
+                                                // onClick button code here
+                                                dialog.dismiss();// use dismiss to cancel alert dialog
+                                            }
+                                        });
+                                alertDialog.show();
 
                             } else if(response.getString("response").equalsIgnoreCase("Ok")) {
 
@@ -161,6 +203,21 @@ public class Penality extends Fragment {
 
                                 Log.e(TAG, "Penality OK");
 
+                                //Dialog box
+
+                                AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+                                alertDialog.setTitle("Success!");
+                                alertDialog.setMessage("The penalty has been completed.");
+                                // Alert dialog button
+                                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // Alert dialog action goes here
+                                                // onClick button code here
+                                                dialog.dismiss();// use dismiss to cancel alert dialog
+                                            }
+                                        });
+                                alertDialog.show();
 
                             }
 
@@ -179,6 +236,16 @@ public class Penality extends Fragment {
 
         });
 
+        //Request Timeout
+
+         int TIMEOUT_MS=10000;        //10 seconds
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        //Start request queue
 
         queue.add(request);
     }

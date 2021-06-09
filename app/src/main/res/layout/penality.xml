@@ -38,7 +38,7 @@
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Abebe Desu" />
+                android:text="Abebe Desu Geteu" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -58,7 +58,7 @@
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Nahom Adisu" />
+                android:text="Nahom Adisu Biruk" />
 
             <TextView
                 android:id="@+id/textView21"
@@ -271,8 +271,7 @@
                 android:inputType="time" />
 
             <Button
-                android:id="@+id/makePenality"
-                android:onClick="makeReport"
+                android:id="@+id/makePenaltyBtn"
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

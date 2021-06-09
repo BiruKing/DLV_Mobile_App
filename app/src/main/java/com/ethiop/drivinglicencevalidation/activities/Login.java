@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -177,6 +178,17 @@ public class Login extends AppCompatActivity {
 
             }
         }*/
+
+        //Request Timeout
+
+        int TIMEOUT_MS=10000;        //10 seconds
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        //Start request queue
 
         queue.add(request);
 
